@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kennady &amp; Noah — October 9, 2027</title>
+
+
+<link rel="preload" href="fonts/exmouth_.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+<link rel="preload" href="fonts/Zanela-pglrR.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav aria-label="Section navigation">
+  <div class="wrap">
+    <a href="index.html" class="current">Home</a>
+    <a href="details.html">Details</a>
+    <a href="rsvp.html">RSVP</a>
+    <a href="registry.html">Registry</a>
+    <a href="gallery.html">Photos</a>
+    <a href="travel.html">Travel</a>
+    <a href="qa.html">Q&amp;A</a>
+    <a href="wedding-party.html">Wedding Party</a>
+  </div>
+</nav>
+
+<header class="hero">
+
+  <!-- EDIT ME: your full names -->
+  <div class="names">
+    <span class="first">Kennady Alynn Schertzer</span>
+    <span class="and">and</span>
+    <span class="second">Noah Timothy Cain</span>
+  </div>
+
+  <!--
+    To swap this photo later: replace images/venue-sketch.jpeg with your own
+    file (any name/format), and update the src= below to match.
+  -->
+  <div class="hero-image-square">
+    <img src="images/venue-sketch.jpeg" alt="Old Monroe Distilling Co. venue sketch">
+  </div>
+
+  <!-- EDIT ME: date, time, and venue. Date/time share a line, then a large
+       dash divider, then venue name + location (location in smaller text). -->
+  <div class="hero-meta">
+    <span class="meta-line">Saturday, October 9, 2027 &nbsp;&middot;&nbsp; 5:00 in the Evening</span>
+    <span class="meta-dash">&mdash;</span>
+    <span class="meta-line">Old Monroe Distilling Co.</span>
+    <span class="meta-line meta-sub">Columbia, Illinois</span>
+  </div>
+
+  <!--
+    COUNTDOWN TIMER
+    Counts down to the ceremony start time, set below. If you change the
+    wedding date/time, update the date in the JavaScript Date() call in
+    the <script> tag at the bottom of this file (search for "TARGET_DATE").
+    Once the countdown hits zero, it automatically swaps to a "married!"
+    message instead of showing negative numbers.
+  -->
+  <div class="countdown-row" id="countdown-row">
+    <div class="countdown-item">
+      <span class="countdown-number" id="cd-days">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="cd-hours">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="cd-minutes">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="cd-seconds">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+</header>
+
+<script>
+  // TARGET_DATE — the ceremony start time. Written with -05:00 (Central
+  // Daylight Time, what Columbia, IL uses in October) so the countdown
+  // is accurate no matter what timezone a visitor is browsing from.
+  // If the date/time ever changes, just update this one line.
+  var TARGET_DATE = new Date('2027-10-09T17:00:00-05:00');
+
+  (function () {
+    var row = document.getElementById('countdown-row');
+    var daysEl = document.getElementById('cd-days');
+    var hoursEl = document.getElementById('cd-hours');
+    var minutesEl = document.getElementById('cd-minutes');
+    var secondsEl = document.getElementById('cd-seconds');
+
+    function tick() {
+      var now = new Date();
+      var diff = TARGET_DATE - now;
+
+      if (diff <= 0) {
+        row.innerHTML = '<span class="countdown-married">We&rsquo;re Married!</span>';
+        clearInterval(timer);
+        return;
+      }
+
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      var minutes = Math.floor((diff / (1000 * 60)) % 60);
+      var seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    tick();
+    var timer = setInterval(tick, 1000);
+  })();
+</script>
+
+<footer>
+  <div class="names-small">Kennady <span class="amp">&amp;</span> Noah</div>
+  <div class="fine">October 9, 2027 &nbsp;·&nbsp; Columbia, Illinois</div>
+</footer>
+
+</body>
+</html>
